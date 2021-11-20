@@ -11,6 +11,16 @@
 |
 */
 
+use App\Http\Controllers\TodosController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/todo/', [TodosController::class, 'index']);
+Route::get('/todo/create/', [TodosController::class, 'form']);
+Route::post('/todo/create/', [TodosController::class, 'create']);
+Route::get('/todo/{id}', [TodosController::class, 'view']);
+Route::get('/todo/remove/{id}', [TodosController::class, 'remove']);
+
+
