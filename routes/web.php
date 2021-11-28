@@ -24,3 +24,18 @@ Route::get('/todo/{id}', [TodosController::class, 'view']);
 Route::get('/todo/remove/{id}', [TodosController::class, 'remove']);
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () { 
+	Route::group([
+		'middleware' => 'admin',
+		'prefix' => 'admin',
+	],	function () {    
+		Route::get('/', function () {
+			return view('admin');     
+		}); 
+	});
+});
